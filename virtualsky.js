@@ -2052,6 +2052,9 @@ VirtualSky.prototype.draw = function(proj){
 
 	if($('.'+this.id+'_position').length == 0) this.container.append('<div class="'+this.id+'_position" title="'+this.getPhrase('positionchange')+'">'+positionstring+'</div>');
 	var off = $('#'+this.idinner).position();
+	if (!off) {
+		off = {top: 0, left: 0};
+	}
 	$('.'+this.id+'_position').css({
 		position:'absolute',
 		padding:0,
