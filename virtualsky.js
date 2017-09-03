@@ -1993,6 +1993,9 @@ VirtualSky.prototype.draw = function(proj){
 	}
 	if(this.container.find('.'+this.id+'_clock').length == 0) this.container.append('<div class="'+this.id+'_clock" title="'+this.getPhrase('datechange')+'">'+clockstring+'</div>');
 	var off = $('#'+this.idinner).position();
+	if (!off) {
+		off = {top: 0, left: 0};
+	}
 	this.container.find('.'+this.id+'_clock').css({
 		position:'absolute',
 		padding:0,
