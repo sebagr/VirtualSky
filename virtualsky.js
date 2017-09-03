@@ -103,12 +103,12 @@ $.extend($.fn.addTouch = function(){
 	});
 	var handleTouch = function(event){
 		event.preventDefault();
+		if (!event.changedTouches) {
+			return;
+		}
 
 		var simulatedEvent;
 		var touches = event.changedTouches,
-		if (!touches) {
-			return;
-		}
 		first = touches[0],
 		type = '';
 		switch(event.type){
