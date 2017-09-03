@@ -228,8 +228,8 @@ $.extend($.fn.addTouch = function(){
         }
 
         // Webkit
-        if (orgEvent.wheelDeltaY!==undefined ) { deltaY = orgEvent.wheelDeltaY; }
-        if (orgEvent.wheelDeltaX!==undefined ) { deltaX = orgEvent.wheelDeltaX * -1; }
+        if (typeof orgEvent.wheelDeltaY !== "undefined" ) { deltaY = orgEvent.wheelDeltaY; }
+        if (typeof orgEvent.wheelDeltaX !== "undefined" ) { deltaX = orgEvent.wheelDeltaX * -1; }
 
         // Look for lowest delta to normalize the delta values
         absDelta = Math.abs(delta);
@@ -2851,7 +2851,7 @@ VirtualSky.prototype.liveSky = function(pos){
 	this.islive = !this.islive;
 	if(this.islive) interval = window.setInterval(function(sky){ sky.setClock('now'); },1000,this);
 	else{
-		if(interval!==undefined) clearInterval(interval);
+		if(typeof interval !== "undefined") clearInterval(interval);
 	}
 	return this;
 }
@@ -2859,13 +2859,13 @@ VirtualSky.prototype.liveSky = function(pos){
 VirtualSky.prototype.start = function(){
 	this.islive = true;
 	// Clear existing interval
-	if(interval!==undefined) clearInterval(interval);
+	if(typeof interval !== "undefined") clearInterval(interval);
 	interval = window.setInterval(function(sky){ sky.setClock('now'); },1000,this);
 }
 VirtualSky.prototype.stop = function(){
 	this.islive = false;
 	// Clear existing interval
-	if(interval!==undefined) clearInterval(interval);
+	if(typeof interval !== "undefined") clearInterval(interval);
 }
 // Increment the clock by the amount specified
 VirtualSky.prototype.advanceTime = function(by,wait){
@@ -2941,7 +2941,7 @@ VirtualSky.prototype.toggleAzimuthMove = function(az){
 		this.moveIt();
 	}else{
 		this.az_step = 0;
-		if(this.timer_az!==undefined) clearTimeout(this.timer_az);
+		if(typeof this.timer_az !== "undefined") clearTimeout(this.timer_az);
 	}
 	return this;
 }
@@ -3002,7 +3002,7 @@ VirtualSky.prototype.spinIt = function(tick,wait){
 			if(this.spin < t && this.spin > -t) this.spin = 0;
 		}
 	}
-	if(this.interval_time!==undefined)
+	if(typeof this.interval_time !== "undefined")
 		clearInterval(this.interval_time);
 	if(this.spin != 0)
 		this.advanceTime(this.spin,wait);
